@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Photo Page</title>
+    <script src="js/dom.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <p>My photo album</p>
+        <button class="button-login">Login</button>
+    </div>
+    
+
+    <div class="container">
+        <div class="category">
+            <div class="category-items">
+                <h1>Categories</h1>
+                <div class="categories">
+                    <a href="#">General</a><br>
+                    <a href="#">Nature</a><br>
+                    <a href="#">Macro</a><br>
+                    <a href="#">Portrait</a><br>
+                    <a href="#">Sports</a><br>
+                    <a href="#">Astrophotography</a>
+                </div>
+                <br>
+                <form id="myForm">
+                    <input type="number" id="numberThumb"><br>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="photos" id="photoList">
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="footer-items">By David Chen</p>
+    </div>
+</body>
+
+</html>

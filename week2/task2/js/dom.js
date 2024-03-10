@@ -29,7 +29,6 @@ function displayPhotos(number) {
         photoBox.appendChild(figCaption);
         photoList.appendChild(photoBox);
     }
-
 }
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-const imageList = ["City view", "Feris view", "Beach view", "School view"];
+const imageList = ["City view", "Ferris view", "Beach view", "School view", "Home view"];
 
 function displayPhotos(userInput) {
     var photoList = document.getElementById("photoList");
@@ -86,6 +86,9 @@ function displayCategories(title) {
 }
 
 function displayPhotoWithCaption(caption) {
+    var photoList = document.getElementById("photoList");
+
+    photoList.innerHTML = "";
     let imageArray = [
         { name: "DSC01049.JPG", caption: "City view"},
         { name: "DSC01066.JPG", caption: "Ferris view"},

@@ -1,4 +1,5 @@
 const API_KEY = "api_key=dc140afe3fd3a251c2fdf9dcd835be5c";
+
 $(document).ready(function () {
     let requestStr = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&format=json&nojsoncallback=1&per_page=20" + "&" + API_KEY;
     $.get(requestStr, function (data) {

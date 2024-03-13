@@ -89,6 +89,7 @@ function displayPhotoWithCaption(caption) {
     var photoList = document.getElementById("photoList");
 
     photoList.innerHTML = "";
+    
     let imageArray = [
         { name: "DSC01049.JPG", caption: "City view"},
         { name: "DSC01066.JPG", caption: "Ferris view"},

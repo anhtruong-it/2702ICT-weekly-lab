@@ -1,4 +1,5 @@
 const API_KEY = "api_key=dc140afe3fd3a251c2fdf9dcd835be5c";
+
 $(document).ready(function () {
     $("#myForm").submit(function (event) {
         event.preventDefault();
@@ -11,13 +12,13 @@ $(document).ready(function () {
             } else {
                 fetchPhoto(data, data.photos.photo.length);
             }
-        })
+        });
 
         $("#modal-close").click(function () {
             console.log("close clicked");
             $("#modal-container").css('display', 'none');
             $("#modal-content").attr('src', '');
-        })
+        });
     });
 }, "json");
 

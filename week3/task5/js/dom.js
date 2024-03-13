@@ -34,7 +34,6 @@ function displayPhotos(urls, number) {
         imageElement.width = 200;
         imageElement.height = 200;
 
-
         // Append the image, figcaption, link, box to the anchor element
         photoLink.appendChild(imageElement);
         photoBox.appendChild(photoLink);

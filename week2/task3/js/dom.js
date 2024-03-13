@@ -1,10 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
     displayCategories("");
+
     document.getElementById("myForm").addEventListener("submit", function(event) {
         event.preventDefault();
+
         let userInput = document.getElementById("numberThumb").value;
         console.log("number: ", !isNaN(userInput));
 
+        // check valid input
         if (!isNaN(userInput)) {
             displayPhotos(userInput);
         } else {
@@ -16,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function displayPhotos(userInput) {
     var photoList = document.getElementById("photoList");
 
+    // remove old contents
     photoList.innerHTML = "";
 
     for (var i = 0; i < userInput; i++) {
@@ -45,6 +49,7 @@ function displayPhotos(userInput) {
     }
 }
 
+// function to display the catgories
 function displayCategories(title) {
     var cateList = document.getElementById("categoryList");
     const defaultCategories = ["General", "Natural", "Macro", "Portrait", "Sport", "Astrophotography"];

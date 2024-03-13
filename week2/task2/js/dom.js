@@ -1,3 +1,19 @@
+document.addEventListener("DOMContentLoaded", function () {
+
+    // get a random number of photo to display
+    let userInputInt = Math.floor(Math.random() * 15) + 1;
+    displayPhotos(userInputInt);
+
+    document.getElementById("myForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        
+        const userInput = document.getElementById("numberThumb").value;
+        let userInputInt = parseInt(userInput, 10);
+
+        displayPhotos(userInputInt);
+    });
+});
+
 function displayPhotos(number) {
     console.log(number);
     var photoList = document.getElementById("photoList");
@@ -30,18 +46,4 @@ function displayPhotos(number) {
         photoList.appendChild(photoBox);
     }
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    let userInputInt = Math.floor(Math.random() * 15) + 1;
-    displayPhotos(userInputInt);
-
-    document.getElementById("myForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-        const userInput = document.getElementById("numberThumb").value;
-        let userInputInt = parseInt(userInput, 10);
-
-        displayPhotos(userInputInt);
-    });
-});
-
 

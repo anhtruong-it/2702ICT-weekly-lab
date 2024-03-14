@@ -1,22 +1,38 @@
+let imageArray = [
+    { name: "DSC01049.JPG", caption: "City view"},
+    { name: "DSC01066.JPG", caption: "Ferris view"},
+    { name: "DSC02511.JPG", caption: "School view"},
+    { name: "DSC03810.JPG", caption: "Home view"},
+    { name: "DSC05750.JPG", caption: "Beach view City"},
+]
+
 document.addEventListener("DOMContentLoaded", function() {
     displayCategories("");
     document.getElementById("myForm").addEventListener("submit", function(event) {
         event.preventDefault();
-        let userInput = document.getElementById("numberThumb").value;
+
+        let userInput = document.getElementById("numberThumb").value.trim().toLowerCase();
         console.log("number: ", !isNaN(userInput));
+        
+        // find matched words
+        let keyWord = userInput.split(" ");
+
+        let matchedImage = imageArray.filter(image => {
+            return keyWord.some(keyword => image.caption.toLowerCase().includes(keyword))
+        });
+        console.log("check: ", matchedImage.length);
 
         if (!isNaN(userInput)) {
             displayPhotos(userInput);
-        } else if (imageList.includes(userInput)) {
-            displayPhotoWithCaption(userInput);
-            console.log("name: ", userInput);
+        } else if (matchedImage != 0) {
+            displayPhotoWithCaption(matchedImage);
         } else {
             displayCategories(userInput);
         }        
     });
 });
 
-const imageList = ["City view", "Ferris view", "Beach view", "School view", "Home view"];
+const imageList = ["City view", "Ferris view", "Beach view City", "School view", "Home view"];
 
 function displayPhotos(userInput) {
     var photoList = document.getElementById("photoList");
@@ -85,42 +101,38 @@ function displayCategories(title) {
     });
 }
 
-function displayPhotoWithCaption(caption) {
+function displayPhotoWithCaption(images) {
+
     var photoList = document.getElementById("photoList");
 
     photoList.innerHTML = "";
     
-    let imageArray = [
-        { name: "DSC01049.JPG", caption: "City view"},
-        { name: "DSC01066.JPG", caption: "Ferris view"},
-        { name: "DSC02511.JPG", caption: "School view"},
-        { name: "DSC03810.JPG", caption: "Home view"},
-        { name: "DSC05750.JPG", caption: "Beach view"},
-    ]
-    let imgInfor = imageArray.find(element => element.caption === caption);
-    
+    images.forEach(e => {
         var photoBox = document.createElement("div");
         photoBox.classList.add("photo-box");
 
         // Create an anchor element for the photo link
         var photoLink = document.createElement("a");
-        photoLink.href = `photos/${imgInfor.name}`;
+        photoLink.href = `photos/${e.name}`;
 
         // Create an image element
         var imageElement = document.createElement("img");
-        imageElement.src = `photos/${imgInfor.name}`;
-        imageElement.alt = caption;
+        imageElement.src = `photos/${e.name}`;
+        imageElement.alt = e.caption;
         imageElement.width = 200;
         imageElement.height = 200;
 
         // Create a figcaption element for the caption
         var figCaption = document.createElement("figcaption");
-        figCaption.textContent = caption;
+        figCaption.textContent = e.caption;
 
         // Append the image, figcaption, link, box to the anchor element
         photoLink.appendChild(imageElement);
         photoBox.appendChild(photoLink);
         photoBox.appendChild(figCaption);
         photoList.appendChild(photoBox);
+    })
+    
+       
 }
 

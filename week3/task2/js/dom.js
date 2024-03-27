@@ -1,50 +1,46 @@
-// use jQuery
 $(document).ready(function () {
-    document.getElementById("myForm").addEventListener("submit", function (event) {
+    $("#myForm").submit(function (event) {
         event.preventDefault();
 
-        let userInput = document.getElementById("numberThumb").value;
+        let userInput = $("#numberThumb").val();
         console.log("number: ", userInput);
 
         if (userInput > 5 || userInput < 1) {
-            alert("PLease enter the number from 1 to 5");
+            alert("Please enter a number from 1 to 5");
         } else {
             // Fetch JSON data
             $.get("data/photodata.json", function (data) {
                 displayPhotos(userInput, data);
-            })
+            });
         }
     });
 });
 
 function displayPhotos(userInput, jsonData) {
-    var photoList = document.getElementById("photoList");
-
-    photoList.innerHTML = "";
+    var photoList = $("#photoList");
+    photoList.empty();
 
     for (var i = 0; i < userInput; i++) {
-        var photoBox = document.createElement("div");
-        photoBox.classList.add("photo-box");
+        var photoBox = $("<div>").addClass("photo-box");
 
         // Create an anchor element for the photo link
-        var photoLink = document.createElement("a");
-        photoLink.href = "photos/" + jsonData[i].name;
+        var photoLink = $("<a>").attr("href", "photos/" + jsonData[i].name);
 
         // Create an image element
-        var imageElement = document.createElement("img");
-        imageElement.src = "photos/" + jsonData[i].name;
-        imageElement.alt = jsonData[i].caption;
-        imageElement.width = 200;
-        imageElement.height = 200;
+        var imageElement = $("<img>").attr({
+            src: "photos/" + jsonData[i].name,
+            alt: jsonData[i].caption,
+            width: 200,
+            height: 200
+        });
 
         // Create a figcaption element for the caption
-        var figCaption = document.createElement("figcaption");
-        figCaption.textContent = jsonData[i].caption;
+        var figCaption = $("<figcaption>").text(jsonData[i].caption);
 
         // Append the image, figcaption, link, box to the anchor element
-        photoLink.appendChild(imageElement);
-        photoBox.appendChild(photoLink);
-        photoBox.appendChild(figCaption);
-        photoList.appendChild(photoBox);
+        photoLink.append(imageElement);
+        photoBox.append(photoLink);
+        photoBox.append(figCaption);
+        photoList.append(photoBox);
     }
 }
